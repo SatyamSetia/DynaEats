@@ -22,6 +22,7 @@ export default class LoginForm extends Component {
     handleSubmit(event) {
       event.preventDefault();
       console.log(this.state)
+      this.props.history.push('/home')
     }
 
   render() {
