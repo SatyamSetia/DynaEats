@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
-export default class LoginForm extends Component {
+import userLogin from '../services/user'
+import { loginUser } from '../actions/user'
+
+class LoginForm extends Component {
 
   state = {
     username: '',
@@ -19,11 +23,24 @@ export default class LoginForm extends Component {
     })
   }
 
-    handleSubmit(event) {
-      event.preventDefault();
-      console.log(this.state)
+  handleSubmit(event) {
+    event.preventDefault();
+
+    const { username, password } = this.state
+    const userResponse = userLogin({username, password})
+
+    if(!userResponse.error) {
+      this.props.dispatch(loginUser(userResponse.data))
       this.props.history.push('/home')
+    } else {
+      console.log(userResponse)
     }
+
+    this.setState({
+      username: '',
+      password: ''
+    })
+  }
 
   render() {
     return (
@@ -35,3 +52,5 @@ export default class LoginForm extends Component {
     )
   }
 }
+
+export default connect()(LoginForm)
