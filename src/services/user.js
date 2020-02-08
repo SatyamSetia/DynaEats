@@ -1,6 +1,6 @@
 import userResponse from '../data/user'
 
-const userLogin = (user) => {
+const fetchUser = (user) => {
   switch(user.username) {
     case 'manager': return userResponse.restaurantManager
     case 'indian': return userResponse.chefIndian
@@ -10,4 +10,4 @@ const userLogin = (user) => {
   }
 }
 
-export default userLogin
+export default fetchUser

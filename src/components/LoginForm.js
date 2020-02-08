@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
-import userLogin from '../services/user'
+import fetchUser from '../services/user'
 import { loginUser } from '../actions/user'
 
 class LoginForm extends Component {
@@ -27,7 +27,7 @@ class LoginForm extends Component {
     event.preventDefault();
 
     const { username, password } = this.state
-    const userResponse = userLogin({username, password})
+    const userResponse = fetchUser({username, password})
 
     if(!userResponse.error) {
       this.props.dispatch(loginUser(userResponse.data))
