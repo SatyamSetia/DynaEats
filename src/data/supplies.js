@@ -11,7 +11,7 @@ const vendorOneSupply = generateResponse({
       unit: 'KG',
       category: 'flour'
     },{
-      id: 'fa_bt',
+      id: 'fa_bu',
       name: 'Butter',
       quantity: 2,
       unit: 'KG',
@@ -98,7 +98,7 @@ const vendorTwoSupply = generateResponse({
       unit: 'KG',
       category: 'flour'
     },{
-      id: 'fa_bt',
+      id: 'fa_bu',
       name: 'Butter',
       quantity: 1,
       unit: 'KG',

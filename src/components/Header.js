@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import logo from '../logo.png'
-
 import { logoutUser } from '../actions/user'
 import { clearStorage } from '../utils/localStorage'
 
