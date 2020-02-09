@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import fetchUser from '../services/user'
 import { loginUser } from '../actions/user'
+import { saveUser } from '../utils/localStorage'
 
 class LoginForm extends Component {
 
@@ -31,6 +32,7 @@ class LoginForm extends Component {
 
     if(!userResponse.error) {
       this.props.dispatch(loginUser(userResponse.data))
+      saveUser(userResponse.data)
       this.props.history.push('/home')
     } else {
       console.log(userResponse)

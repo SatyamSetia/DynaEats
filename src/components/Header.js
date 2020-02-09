@@ -4,6 +4,12 @@ import { connect } from 'react-redux'
 import logo from '../logo.png'
 
 import { logoutUser } from '../actions/user'
+import { clearStorage } from '../utils/localStorage'
+
+function handleLogout(dispatch) {
+  clearStorage()
+  dispatch(logoutUser())
+}
 
 const Header = (props) => {
   return (
@@ -11,7 +17,7 @@ const Header = (props) => {
       <img src={logo} alt="logo" className="logo"/>
       <div className="user_info">
         <span>User: {props.user.username}</span>
-        <button onClick={() => props.dispatch(logoutUser())} className="btn_logout">Logout</button>
+        <button onClick={() => handleLogout(props.dispatch)} className="btn_logout">Logout</button>
       </div>
     </div>
   )
