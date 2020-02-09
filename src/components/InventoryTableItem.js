@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import EditableText from './EditableText'
+
 export default class InventoryTableItem extends Component {
 
   state = {
@@ -18,7 +20,7 @@ export default class InventoryTableItem extends Component {
     const vendorTwoSupply = this.getValue(item.vendorTwoSupply, item.unit)
 
     const receivedQuantity = this.getValue(item.vendorOneSupply+item.vendorTwoSupply, item.unit)
-    const status = this.getStatus(item)
+    const status = this.getStatus(item.quantity, item.vendorOneSupply, item.vendorTwoSupply)
 
     this.setState({
       status,
@@ -33,12 +35,33 @@ export default class InventoryTableItem extends Component {
     return !quantity ? '-': `${quantity} ${unit}`
   }
 
-  getStatus = (item) => {
-    if(!item.quantity){
+  getStatus = (quantity, vendorOneSupply, vendorTwoSupply) => {
+    if(!quantity){
       return 'Insufficient'
     } else {
-      return item.quantity > (item.vendorOneSupply + item.vendorTwoSupply)? 'Insufficient': 'OK'
+      return quantity > (vendorOneSupply + vendorTwoSupply)? 'Insufficient': 'OK'
     }
+  }
+
+  updateQuantity = (value, isVendorOne) => {
+    const { item } = this.props
+
+    const receivedQuantity = isVendorOne? this.getValue(value+item.vendorTwoSupply, item.unit): this.getValue(item.vendorOneSupply+value, item.unit)
+    const status = isVendorOne? this.getStatus(item.quantity, value, item.vendorTwoSupply): this.getStatus(item.quantity, item.vendorOneSupply, value)
+    const newValue = this.getValue(value, item.unit)
+
+    if(isVendorOne)
+      this.setState({
+        receivedQuantity,
+        status,
+        vendorOneSupply: newValue
+      })
+    else
+      this.setState({
+        receivedQuantity,
+        status,
+        vendorTwoSupply: newValue
+      })
   }
 
   render() {
@@ -52,8 +75,12 @@ export default class InventoryTableItem extends Component {
       <tr className={styleSufficientRow}>
         <td>{item.name}</td>
         <td>{requiredQuantity}</td>
-        <td className={styleVisiblity}>{vendorOneSupply}</td>
-        <td className={styleVisiblity}>{vendorTwoSupply}</td>
+        <td className={styleVisiblity}>
+          <EditableText text={vendorOneSupply} item={item.name} vendor={"Vendor 1"} updateQuantity={(value) => this.updateQuantity(value, true)}/>
+        </td>
+        <td className={styleVisiblity}>
+          <EditableText text={vendorTwoSupply} item={item.name} vendor={"Vendor 2"} updateQuantity={(value) => this.updateQuantity(value, false)}/>
+        </td>
         <td>{receivedQuantity}</td>
         <td className={styleSufficient}>{status}</td>
         <td className={styleVisiblity}>{item.cuisines.includes('bakery')?<span className={styleSufficient}>Y</span>:'N'}</td>
