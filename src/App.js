@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { connect } from 'react-redux'
 
 import './App.css';
-import LoginForm from './components/LoginForm'
+import LandingPage from './components/LandingPage'
 import Home from './components/Home'
 
 function App(props) {
@@ -28,7 +28,7 @@ function App(props) {
               )
             }
           />
-          <Route path="/" component={LoginForm}/>
+          <Route path="/" component={LandingPage}/>
         </Switch>
       </header>
     </Router>

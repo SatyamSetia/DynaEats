@@ -13,7 +13,7 @@ function handleLogout(dispatch) {
 const Header = (props) => {
   return (
     <div className="header">
-      <img src={logo} alt="logo" className="logo"/>
+      <img src={logo} alt="logo" className="header_logo"/>
       <div className="user_info">
         <span>User: {props.user.username}</span>
         <button onClick={() => handleLogout(props.dispatch)} className="btn_logout">Logout</button>
