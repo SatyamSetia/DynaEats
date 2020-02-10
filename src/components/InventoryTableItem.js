@@ -72,7 +72,7 @@ export default class InventoryTableItem extends Component {
     const styleSufficientRow = status === 'Insufficient'? 'alert_row':''
 
     return (
-      <tr className={styleSufficientRow}>
+      <tr className={styleSufficientRow} id="item_row">
         <td>{item.name}</td>
         <td>{requiredQuantity}</td>
         <td className={styleVisiblity}>
@@ -81,7 +81,7 @@ export default class InventoryTableItem extends Component {
         <td className={styleVisiblity}>
           <EditableText text={vendorTwoSupply} item={item.name} vendor={"Vendor 2"} updateQuantity={(value) => this.updateQuantity(value, false)}/>
         </td>
-        <td>{receivedQuantity}</td>
+        <td id="status">{receivedQuantity}</td>
         <td className={styleSufficient}>{status}</td>
         <td className={styleVisiblity}>{item.cuisines.includes('bakery')?<span className={styleSufficient}>Y</span>:'N'}</td>
         <td className={styleVisiblity}>{item.cuisines.includes('italian')?<span className={styleSufficient}>Y</span>:'N'}</td>

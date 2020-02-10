@@ -10,7 +10,7 @@ function handleLogout(dispatch) {
   dispatch(logoutUser())
 }
 
-const Header = (props) => {
+export const Header = (props) => {
   return (
     <div className="header">
       <img src={logo} alt="logo" className="header_logo"/>

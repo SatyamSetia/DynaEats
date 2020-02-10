@@ -6,7 +6,7 @@ import './App.css';
 import LandingPage from './components/LandingPage'
 import Home from './components/Home'
 
-function App(props) {
+export function App(props) {
   let isAuthenticated = props.user!=null
 
   return (

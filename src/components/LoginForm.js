@@ -5,7 +5,7 @@ import fetchUser from '../services/user'
 import { loginUser } from '../actions/user'
 import { saveUser } from '../utils/localStorage'
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
 
   state = {
     username: '',

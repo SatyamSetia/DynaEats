@@ -14,6 +14,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### Project structure
 ```
   src
+   |--- __tests__ (contains unit test cases)
    |--- actions
    |--- components
    |--- constants
